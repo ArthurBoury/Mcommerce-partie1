@@ -69,6 +69,7 @@ public class ProductController {
     @PostMapping(value = "/Produits")
 
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
+        if(product.getPrix()==0) throw new ProduitIntrouvableException("Le produit ajouté a un prix nulle");
 
         Product productAdded =  productDao.save(product);
 
@@ -110,7 +111,7 @@ public class ProductController {
     public List<Product> listeProduitsTries(){
         return productDao.findAllByOrderByNomAsc();
     }
-    
+
     //Pour les tests
     @GetMapping(value = "test/produits/{prix}")
     public List<Product>  testeDeRequetes(@PathVariable int prix) {
