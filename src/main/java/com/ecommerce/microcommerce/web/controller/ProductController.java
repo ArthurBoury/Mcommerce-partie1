@@ -106,7 +106,11 @@ public class ProductController {
         }
         return produitMarge;
     }
-
+    @GetMapping(value = "ProduitsTries")
+    public List<Product> listeProduitsTries(){
+        return productDao.findAllByOrderByNomAsc();
+    }
+    
     //Pour les tests
     @GetMapping(value = "test/produits/{prix}")
     public List<Product>  testeDeRequetes(@PathVariable int prix) {
