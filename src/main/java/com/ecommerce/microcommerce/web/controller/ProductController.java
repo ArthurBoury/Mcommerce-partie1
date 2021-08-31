@@ -69,7 +69,8 @@ public class ProductController {
     @PostMapping(value = "/Produits")
 
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
-        if(product.getPrix()==0) throw new ProduitIntrouvableException("Le produit ajouté a un prix nulle");
+
+        if(product.getPrix()==0) throw new ProduitIntrouvableException("Le produit ajouté a un prix nul");
 
         Product productAdded =  productDao.save(product);
 
